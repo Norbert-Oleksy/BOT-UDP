@@ -1,0 +1,22 @@
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\bin\Debug\net5.0-windows\BOT UDP.exe
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\bin\Debug\net5.0-windows\BOT UDP.deps.json
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\bin\Debug\net5.0-windows\BOT UDP.runtimeconfig.json
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\bin\Debug\net5.0-windows\BOT UDP.runtimeconfig.dev.json
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\bin\Debug\net5.0-windows\BOT UDP.dll
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\bin\Debug\net5.0-windows\ref\BOT UDP.dll
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\bin\Debug\net5.0-windows\BOT UDP.pdb
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.csproj.AssemblyReference.cache
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\MainWindow.g.cs
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\App.g.cs
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP_MarkupCompile.cache
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP_MarkupCompile.lref
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\MainWindow.baml
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.g.resources
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.GeneratedMSBuildEditorConfig.editorconfig
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.AssemblyInfoInputs.cache
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.AssemblyInfo.cs
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.csproj.CoreCompileInputs.cache
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.dll
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\ref\BOT UDP.dll
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.pdb
+D:\ProgramowanieFolder\Zadanie-na-praktyki-voestalpine Signaling Poland\BOT UDP\obj\Debug\net5.0-windows\BOT UDP.genruntimeconfig.cache
