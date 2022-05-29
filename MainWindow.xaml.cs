@@ -17,44 +17,70 @@ using System.Timers;
 using System.Windows.Threading;
 using System.Net;
 using System.Net.Sockets;
+using System.ComponentModel;
 
 namespace BOT_UDP
 {
 
     public partial class MainWindow : Window
     {
-        private int listenPort;
-        private UInt32 rndMessage;
+        BackgroundWorker backgroundWorker1;
+        int listenPort;
+        string ip;
+        UInt32 rndMessage;
         Random rnd = new Random();
-        private bool state=false;
 
         public MainWindow()
         {
             InitializeComponent();
+            backgroundWorker1 = new BackgroundWorker();
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
         }
 
         private void START_STOP_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (START_STOP_Button.Content.Equals("START"))
+            if (!backgroundWorker1.IsBusy)
             {
-                if (String.IsNullOrEmpty(UDP_PORT_TextBox.Text))
-                {
-                    listenPort = 50000;
-                    UDP_PORT_TextBox.AppendText(listenPort.ToString());
-                }
-
+                IPandPort();
                 IP_TextBox.IsEnabled = false;
                 UDP_PORT_TextBox.IsEnabled = false;
-                state = true;
                 START_STOP_Button.Content = "STOP";
-                StartListener();
+
+                // Start the asynchronous operation.
+                backgroundWorker1.RunWorkerAsync();
             }
             else
             {
                 IP_TextBox.IsEnabled = true;
                 UDP_PORT_TextBox.IsEnabled = true;
-                state = false;
                 START_STOP_Button.Content = "START";
+
+                // Cancel the asynchronous operation.
+                backgroundWorker1.CancelAsync();
+            }
+        }
+
+        private void IPandPort()
+        {
+            if (String.IsNullOrEmpty(IP_TextBox.Text))
+            {
+                ip = IPAddress.Any.ToString();
+            }
+            else
+            {
+                ip = IP_TextBox.Text;
+            }
+
+            if (!String.IsNullOrEmpty(UDP_PORT_TextBox.Text) && int.Parse(UDP_PORT_TextBox.Text) >= 5000 && int.Parse(UDP_PORT_TextBox.Text) <= 60000)
+            {
+                listenPort = int.Parse(UDP_PORT_TextBox.Text);
+            }
+            else
+            {
+                listenPort = 50000;
             }
         }
 
@@ -72,38 +98,55 @@ namespace BOT_UDP
             dispatcherTimer.Start();
         }
 
-        private static String GetTimestamp(DateTime value)
+        private static String GetTimestamp()
         {
-            return value.ToString("yyyyMMddHHmmssffff");
+            return DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
         }
 
-        private void StartListener()
+        // This event handler is where the time-consuming work is done.
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             UdpClient listener = new UdpClient(listenPort);
-            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
+            //IPAddress.Any IPAddress.Parse(ip)
+            IPEndPoint groupEP = new IPEndPoint(IPAddress.Parse(ip), listenPort);
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
             try
             {
-                while (state)
+                while (true)
                 {
-                    byte[] bytes = listener.Receive(ref groupEP);
-                    string msg = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
+                    if (backgroundWorker1.CancellationPending == true)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                    else
+                    {
+                        byte[] bytes = listener.Receive(ref groupEP);
+                        string msg = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
 
-                    DataTableGrid.Items.Add(new { timestamp = GetTimestamp(DateTime.Now), sourceIP = groupEP, message = msg});
-                    byte[] sendbuf = Encoding.ASCII.GetBytes("ACK! " + RndMsgBlock.Text);
-                    s.SendTo(sendbuf, groupEP);
+                        byte[] sendbuf = Encoding.ASCII.GetBytes("ACK! " + rndMessage);
+                        s.SendTo(sendbuf, groupEP);
+                        backgroundWorker1.ReportProgress(10,msg);
+                    }
                 }
             }
-            catch (SocketException e)
+            catch (SocketException a)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(a);
             }
             finally
             {
                 listener.Close();
+                s.Close();
+                e.Cancel = true;
             }
+        }
 
+        // This event handler updates the progress.
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            DataTableGrid.Items.Add(new { timestamp = GetTimestamp(), sourceIP = ip, message = e.UserState as String} );
         }
     }
 }

@@ -45,7 +45,7 @@
         <TextBlock Grid.Row="7" Grid.Column="1" Text="INCOMING DATA" Margin="25,35,0,0" />
 
 
-        <DataGrid x:Name="DataTableGrid" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3">
+        <DataGrid x:Name="DataTableGrid" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="timestamp" Binding="{Binding timestamp}"/>
                 <DataGridTextColumn Header="sourceIP" Binding="{Binding sourceIP}"/>
